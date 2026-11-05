@@ -61,7 +61,7 @@ async function main() {
       ${mode ? `document.querySelector('.mode[data-mode="${mode}"]').click();` : ''}
       return true;
     })()`);
-    await sleep(2200);
+    await sleep(3500);
     return evaluate(`(() => ({
       out: document.querySelector('#output').textContent.trim(),
       engine: document.querySelector('#engine').textContent.trim(),
