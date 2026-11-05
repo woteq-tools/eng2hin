@@ -79,11 +79,16 @@ python3 -m http.server 8000
 # open http://localhost:8000
 ```
 
-Run the transliterator tests with Node:
+### Tests
 
 ```bash
-node test/translit.test.js
+node test/translit.test.js      # 43 transliteration + 6 romanisation cases
+node test/e2e.test.js           # drives the real page via Chrome DevTools Protocol
+node test/offline.test.js       # verifies the tool still answers with no network
 ```
+
+The browser tests need Chrome installed and the page served on
+`http://localhost:8765` (`python3 -m http.server 8765`).
 
 ## Project layout
 
@@ -94,6 +99,9 @@ assets/js/translit.js    offline Roman <-> Devanagari engine + dictionaries
 assets/js/app.js         UI, engines, API calls
 assets/favicon.svg       icon
 test/translit.test.js    transliteration test suite
+test/e2e.test.js         end-to-end browser test
+test/offline.test.js     offline behaviour test
+test/api-test.html       manual API endpoint check
 ```
 
 ## License
