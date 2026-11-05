@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>api test</title></head>
+<body><pre id="out">running…</pre>
+<script>
+const log = [];
+function say(s){ log.push(s); document.getElementById('out').textContent = log.join('\n'); }
+
+async function googleTranslate(text, sl, tl) {
+  const url = `https://translate.googleapis.com/translate_a/single?client=dict-chrome-ex&sl=${encodeURIComponent(sl)}&tl=${encodeURIComponent(tl)}&dt=t&q=${encodeURIComponent(text)}`;
+  const res = await fetch(url, { referrerPolicy: 'no-referrer' });
+  if (!res.ok) throw new Error('Google HTTP ' + res.status);
+  const data = await res.json();
+  if (!Array.isArray(data) || !Array.isArray(data[0])) throw new Error('Google: bad payload');
+  const joined = data[0].map((seg) => (seg && Array.isArray(seg) && seg[0]) || '').join('');
+  const detected = typeof data[2] === 'string' ? data[2] : sl;
+  if (!joined) throw new Error('Google: empty result');
+  return { text: joined, detected };
+}
+async function myMemoryTranslate(text, sl, tl) {
+  const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${encodeURIComponent(sl)}|${encodeURIComponent(tl)}`;
+  const res = await fetch(url, { referrerPolicy: 'no-referrer' });
+  if (!res.ok) throw new Error('MyMemory HTTP ' + res.status);
+  const data = await res.json();
+  if (!data || !data.responseData) throw new Error('MyMemory: bad payload');
+  if (data.responseStatus && data.responseStatus !== 200) throw new Error(data.responseDetails || 'fail');
+  const t = data.responseData.translatedText || '';
+  if (!t) throw new Error('MyMemory: empty result');
+  return { text: t, detected: sl };
+}
+
+(async () => {
+  const cases = [
+    ['How are you?', 'auto', 'hi'],
+    ['My name is Rahul and I live in Delhi.', 'auto', 'hi'],
+    ['Good morning, have a nice day!', 'auto', 'hi'],
+    ['I need water', 'en', 'hi'],
+    ['aap kaise ho', 'auto', 'hi'],
+    ['मेरा नाम राहुल है', 'hi', 'en'],
+    ['आज मौसम बहुत अच्छा है', 'hi', 'en'],
+    ['मैं ठीक हूँ', 'hi', 'en']
+  ];
+  for (const [text, sl, tl] of cases) {
+    let line = `[${sl}->${tl}] ${text}`;
+    try {
+      const g = await googleTranslate(text, sl, tl);
+      line += `\n   GOOGLE  : ${g.text}   (detected=${g.detected})`;
+    } catch (e) { line += `\n   GOOGLE  : FAIL ${e.message}`; }
+    try {
+      const m = await myMemoryTranslate(text, sl === 'auto' ? 'en' : sl, tl);
+      line += `\n   MYMEMORY: ${m.text}`;
+    } catch (e) { line += `\n   MYMEMORY: FAIL ${e.message}`; }
+    say(line);
+  }
+  say('DONE');
+})();
+</script></body></html>

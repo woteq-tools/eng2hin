@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>English to Hindi Translator — Woteq Tools</title>
+<meta name="description" content="Free English to Hindi translator. Type English or Hinglish and get instant Devanagari. Works offline for Hinglish, online for full sentences. No sign-up, no tracking.">
+<meta name="theme-color" content="#4f46e5">
+<meta name="color-scheme" content="light dark">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="English to Hindi Translator — Woteq Tools">
+<meta property="og:description" content="Type English or Hinglish, get Devanagari instantly. Free, open source, no sign-up.">
+<meta property="og:url" content="https://woteq-tools.github.io/eng2hin/">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#tool">Skip to translator</a>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="https://woteq-tools.github.io/" target="_blank" rel="noopener">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 5v9a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V5"/>
+          <path d="M6 5l10 8L26 5"/><path d="M6 5H3m23 0h3"/><path d="M16 13v14"/>
+        </svg>
+      </span>
+      <span class="brand-text">Woteq<span class="brand-dot">.</span>Tools</span>
+    </a>
+    <nav class="header-nav" aria-label="Primary">
+      <a href="https://woteq-tools.github.io/" target="_blank" rel="noopener">All tools</a>
+      <a class="btn btn-sm btn-ghost" href="https://github.com/woteq-tools/eng2hin" target="_blank" rel="noopener">
+        <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        Source
+      </a>
+    </nav>
+  </div>
+</header>
+
+<main id="tool">
+
+  <!-- ───────────────────────── Hero ───────────────────────── -->
+  <section class="hero">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="wrap hero-inner">
+      <p class="eyebrow"><span class="pulse" aria-hidden="true"></span> Free · Open source · No sign-up</p>
+      <h1>English <span class="arrow" aria-hidden="true">&rarr;</span> <span class="grad">हिन्दी</span></h1>
+      <p class="lede">
+        Type English — or type Hindi in Roman script like <em>aap kaise ho</em> — and get
+        proper Devanagari back. Hinglish is transliterated instantly on your device,
+        full English sentences are translated for you.
+      </p>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── Tool ───────────────────────── -->
+  <section class="wrap tool-wrap">
+
+    <div class="tool-card">
+      <div class="tool-head">
+        <div class="modes" role="tablist" aria-label="Translation mode">
+          <button class="mode is-active" role="tab" aria-selected="true" data-mode="auto" type="button">Auto</button>
+          <button class="mode" role="tab" aria-selected="false" data-mode="hinglish" type="button">Hinglish &rarr; देवनागरी</button>
+          <button class="mode" role="tab" aria-selected="false" data-mode="en2hi" type="button">English &rarr; हिन्दी</button>
+          <button class="mode" role="tab" aria-selected="false" data-mode="hi2en" type="button">हिन्दी &rarr; English</button>
+        </div>
+      </div>
+
+      <div class="panes">
+        <!-- input -->
+        <div class="pane pane-in">
+          <label class="pane-label" for="input">Your text</label>
+          <textarea id="input" rows="4" spellcheck="false" autocomplete="off"
+            placeholder="aap kaise ho&#10;or: How are you?"></textarea>
+          <div class="pane-foot">
+            <span class="hint" id="detect-hint">Type something to begin.</span>
+            <span class="counter" id="counter">0</span>
+          </div>
+        </div>
+
+        <div class="swap-col">
+          <button class="swap" id="swap" type="button" title="Swap input and output" aria-label="Swap input and output">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M7 4v13M7 4 3.5 7.5M7 4l3.5 3.5"/><path d="M17 20V7M17 20l3.5-3.5M17 20l-3.5-3.5"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- output -->
+        <div class="pane pane-out">
+          <div class="pane-label-row">
+            <span class="pane-label">हिन्दी (Devanagari)</span>
+            <span class="engine" id="engine" hidden></span>
+          </div>
+          <div class="output" id="output" aria-live="polite" aria-atomic="true">
+            <span class="placeholder" id="placeholder">Your translation appears here.</span>
+          </div>
+          <div class="pron" id="pron" hidden>
+            <span class="pron-label">Pronunciation</span>
+            <span id="pron-text"></span>
+          </div>
+          <div class="pane-foot actions">
+            <button class="btn btn-sm btn-ghost" id="copy" type="button" disabled>
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg>
+              <span id="copy-label">Copy</span>
+            </button>
+            <button class="btn btn-sm btn-ghost" id="speak" type="button" disabled>
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M16 9a4 4 0 0 1 0 6"/><path d="M19 6a8 8 0 0 1 0 12"/></svg>
+              Listen
+            </button>
+            <button class="btn btn-sm btn-ghost" id="retry" type="button" hidden>Retry online</button>
+            <span class="spacer"></span>
+            <span class="hint kbd-hint">Press <kbd>Ctrl</kbd>+<kbd>Enter</kbd></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- examples -->
+    <div class="examples">
+      <h2 class="examples-title">Try one</h2>
+      <div class="chips" id="examples"></div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── Features ───────────────────────── -->
+  <section class="section">
+    <div class="wrap">
+      <div class="grid grid-3">
+        <div class="feature">
+          <span class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4.5 13H11l-1 9 8.5-11H12l1-9z"/></svg>
+          </span>
+          <h3>Instant offline Hinglish</h3>
+          <p>A transliteration engine runs on your device — no network, no waiting. <code>aap kaise ho</code> becomes <span class="dev">आप कैसे हो</span> in milliseconds.</p>
+        </div>
+        <div class="feature">
+          <span class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6.5v5c0 5 3.4 8.7 8 9.5 4.6-.8 8-4.5 8-9.5v-5L12 3z"/><path d="m9 12 2 2 4-4"/></svg>
+          </span>
+          <h3>Private by design</h3>
+          <p>Hinglish never leaves your browser. Full-sentence translation goes straight to the public translation endpoint — no account, no key, no server of ours.</p>
+        </div>
+        <div class="feature">
+          <span class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4 1.2-4-2.2-6-2.6"/><path d="M15 21v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1-.3-3.4 1.3a11.6 11.6 0 0 0-6 0C6.9 3 5.9 3.3 5.9 3.3a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4.5 9.7c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
+          </span>
+          <h3>Open source</h3>
+          <p>The whole thing is plain HTML, CSS and JavaScript. Read it, fork it, host it yourself.</p>
+        </div>
+      </div>
+
+      <div class="howto">
+        <h2 class="howto-title">Which mode do I need?</h2>
+        <div class="howto-grid">
+          <div class="howto-card">
+            <h3><span class="dev">Hinglish → देवनागरी</span></h3>
+            <p>You wrote Hindi, just in Latin letters. The offline engine transliterates it word by word — <code>aap kaise ho</code> → <span class="dev">आप कैसे हो</span>.</p>
+          </div>
+          <div class="howto-card">
+            <h3>English → हिन्दी</h3>
+            <p>Real English needs a real translation, not letter-swapping. Sentences are sent to a public translation endpoint and come back as natural Hindi.</p>
+          </div>
+          <div class="howto-card">
+            <h3>हिन्दी → English</h3>
+            <p>Already have Devanagari? Paste it in and get the English meaning, plus a romanised pronunciation guide for reading it out loud.</p>
+          </div>
+        </div>
+        <p class="howto-note">
+          <strong>Auto</strong> sniffs the input: Devanagari in means Hindi-out, Roman-script Hindi gets transliterated,
+          anything else is treated as English and translated. If the network is down, the offline engine still answers.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="footer-brand">
+      <span class="brand-mark small" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 5v9a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V5"/><path d="M6 5l10 8L26 5"/><path d="M6 5H3m23 0h3"/><path d="M16 13v14"/>
+        </svg>
+      </span>
+      <span>Woteq<span class="brand-dot">.</span>Tools</span>
+    </div>
+    <nav class="footer-links" aria-label="Footer">
+      <a href="https://github.com/woteq-tools/eng2hin" target="_blank" rel="noopener">Source</a>
+      <a href="https://github.com/woteq-tools" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://woteq-tools.github.io/" target="_blank" rel="noopener">All tools</a>
+    </nav>
+    <p class="footer-note">
+      Built with plain HTML, CSS &amp; JavaScript. Hosted on
+      <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a>.
+    </p>
+  </div>
+</footer>
+
+<script src="assets/js/translit.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
